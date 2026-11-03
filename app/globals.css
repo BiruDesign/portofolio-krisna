@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+/* Smooth Scroll bawaan browser */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Transisi transisi tema & modal */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
+}
+
+/* Keyframes untuk modal pop-up */
+@keyframes modalEntry {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal {
+  animation: modalEntry 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
