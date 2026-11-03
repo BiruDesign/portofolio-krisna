@@ -1,0 +1,9 @@
+// Pasang efek untuk langsung mengganti warna latar body jendela browser
+  useEffect(() => {
+    document.body.style.backgroundColor = isDark ? "#09090b" : "#ffffff";
+    document.body.style.color = isDark ? "#f4f4f5" : "#09090b";
+  }, [isDark]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
