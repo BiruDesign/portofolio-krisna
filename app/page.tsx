@@ -90,111 +90,110 @@ const PROJECTS_DATA: ProjectCaseStudy[] = [
     id: "sipanas",
     number: "02",
     category: "EMBEDDED IOT & SMART AGRICULTURE",
-    status: "WORKING PROTOTYPE",
+    status: "IN DEVELOPMENT // ACTIVE R&D",
     accentColor: "#2dd4bf",
     accentSoftBg: "rgba(20, 184, 166, 0.12)",
     accentBorder: "rgba(20, 184, 166, 0.35)",
     accentBadge: "#0d9488",
     title: "SIPANAS-IoT — Smart Irrigation System",
     subtitle:
-      "Otomasi penyiraman tanaman presisi berbasis data kelembapan tanah aktual dengan kendali lintas platform.",
+      "Proyek otomasi penyiraman presisi yang saat ini sedang aktif dikembangkan untuk kontrol irigasi lintas platform.",
     shortDesc:
-      "Sistem irigasi pintar menggunakan ESP32, capacitive soil moisture sensor, dan aktuator relay pompa yang bisa dipantau maupun di-override langsung dari web dashboard serta aplikasi Flutter.",
-    livePreviewTitle: "SOIL & ACTUATOR TELEMETRY",
+      "Sistem irigasi pintar (sedang dalam tahap pengembangan aktif) menggunakan ESP32, capacitive soil moisture sensor, serta aktuator relay/valve yang terintegrasi dengan web dashboard Next.js & aplikasi mobile Flutter.",
+    livePreviewTitle: "DEV LAB TELEMETRY PREVIEW",
     liveMetrics: [
-      { label: "Soil Moisture", value: "72% (Optimal Level)", statusColor: "text-teal-400" },
-      { label: "Relay Pump State", value: "STANDBY / AUTO-OFF", statusColor: "text-amber-400" },
+      { label: "Project Status", value: "Active Development (R&D)", statusColor: "text-amber-400" },
+      { label: "Target Moisture", value: "40% - 75% Auto-Threshold", statusColor: "text-teal-400" },
       { label: "Core Controller", value: "ESP32 NodeMCU-32S" },
     ],
-    tags: ["ESP32", "C/C++", "Soil Moisture Sensor", "Relay Actuator", "Flutter", "Next.js"],
+    tags: ["ESP32", "C/C++", "Capacitive Soil Sensor", "Relay & Valve", "Flutter", "Next.js"],
     overview:
-      "Berawal dari masalah penyiraman manual yang sering tidak konsisten. SIPANAS-IoT dirancang agar tanaman mendapatkan suplai air secara presisi berdasarkan pembacaan sensor analog yang sudah dikalibrasi, lengkap dengan dashboard monitoring jarak jauh.",
-    specsTitle: "Hardware Specs & Pinout",
+      "SIPANAS-IoT adalah proyek yang saat ini sedang dikembangkan (under active development) untuk menjawab masalah penyiraman tanaman manual yang kurang efisien. Sistem ini dirancang agar mampu mengeksekusi penyiraman secara mandiri berdasarkan kelembapan tanah aktual sekaligus menyediakan kontrol jarak jauh secara real-time.",
+    specsTitle: "Hardware Specs & Target Architecture",
     specs: [
       { label: "Microcontroller", detail: "ESP32 NodeMCU-32S (Dual-Core 32-bit LX6)" },
       { label: "Sensor Array", detail: "Capacitive Soil Moisture Sensor (ADC Pin) & DHT22" },
-      { label: "Actuator Stage", detail: "Modul Relay 5V Optocoupler + Pompa Air DC / Motorized Valve" },
-      { label: "Client Interfaces", detail: "Flutter Mobile App & Next.js Monitoring Dashboard" },
+      { label: "Actuator Stage", detail: "Modul Relay 5V Optocoupler + Motorized Ball Valve / Pompa DC" },
+      { label: "Client Interfaces", detail: "Next.js Web Dashboard & Flutter Mobile App (In Progress)" },
     ],
     dataFlow: [
       "Soil Sensor (Membaca tegangan analog tingkat kekeringan media tanam)",
       "ESP32 Firmware (Filter sinyal ADC & evaluasi batas ambang bawah/atas)",
-      "Physical Execution (Trigger relay pompa menyala atau mati otomatis)",
-      "Cloud Sync -> Update status secara live ke aplikasi Flutter & Web",
+      "Physical Execution (Trigger relay/valve menyala atau mati otomatis)",
+      "Cloud Sync -> Sinkronisasi telemetri real-time ke dashboard Next.js & Flutter",
     ],
-    logicTitle: "Control Logic & Safety",
+    logicTitle: "Control Logic & Ongoing Features",
     logicPoints: [
-      "Hysteresis Loop: Pompa aktif saat kelembapan turun di bawah 40% dan otomatis berhenti saat menyentuh 75%.",
-      "Dry-Run Cutoff Protection: Pompa otomatis dimatikan jika menyala lebih dari 120 detik tanpa kenaikan kelembapan (indikasi tangki air habis).",
-      "Manual Override Switch: Tombol pemicu instan dari aplikasi mobile kapan saja dibutuhkan.",
+      "Hysteresis Loop: Pompa/valve aktif saat kelembapan di bawah 40% dan berhenti otomatis di 75%.",
+      "Dry-Run Cutoff Protection: Fitur pengaman auto-shutdown jika aktuator aktif lebih dari 120 detik tanpa kenaikan kelembapan.",
+      "Multi-Platform Override: Pengembangan sakelar manual jarak jauh via dashboard web dan aplikasi mobile.",
     ],
     challenge:
       "Pembacaan pin ADC pada ESP32 rentan mengalami fluktuasi elektrikal (noise) yang bisa memicu relay menyala-mati terlalu cepat (chattering).",
     solution:
-      "Menambahkan algoritma Moving Average Filter (merata-ratakan 10 sampel berturut-turut) di kode C++ sebelum mikrokontroler mengambil keputusan.",
+      "Mengimplementasikan algoritma Moving Average Filter (merata-ratakan 10 sampel berturut-turut) di kode C++ sebelum mikrokontroler mengambil keputusan.",
     benchmarks: [
-      { metric: "ADC Precision", result: "±2.5% Margin Akurasi" },
+      { metric: "Development Stage", result: "Hardware & API Integration" },
       { metric: "Actuator Response", result: "< 500 ms Trigger Time" },
-      { metric: "Water Efficiency", result: "Hemat ~35% Air vs Manual" },
+      { metric: "ADC Precision", result: "±2.5% Margin Kalibrasi" },
     ],
     links: [
-      { label: "Firmware Source Code", url: "https://github.com/BiruDesign" },
-      { label: "System Architecture", url: "#" },
+      { label: "GitHub Progress", url: "https://github.com/BiruDesign" },
     ],
   },
   {
     id: "rfid-attendance",
     number: "03",
-    category: "HARDWARE DATA LOGGER",
-    status: "DEPLOYED FINAL PROJECT",
+    category: "PORTABLE BLE & NFC ATTENDANCE SYSTEM",
+    status: "V2 REBUILD // IN PROGRESS",
     accentColor: "#fb7185",
     accentSoftBg: "rgba(244, 63, 94, 0.12)",
     accentBorder: "rgba(244, 63, 94, 0.35)",
     accentBadge: "#e11d48",
-    title: "RFID Student Attendance & Excel Logger",
+    title: "Portable Smart Attendance — V2 Rebuild (ESP32 BLE & PN532 NFC)",
     subtitle:
-      "Digitalisasi presensi siswa berbasis tap kartu RFID yang langsung terekap rapi ke lembar kerja Excel.",
+      "Re-engineering sistem presensi statis menjadi perangkat portable berbasis ESP32 BLE & PN532 NFC untuk mobilitas guru dan siswa saat bepergian.",
     shortDesc:
-      "Mesin presensi mandiri berbasis frekuensi 13.56 MHz menggunakan Arduino Uno, modul RC522, layar LCD 20x4 I2C, dan integrasi data serial langsung ke Microsoft Excel via PLX-DAQ.",
-    livePreviewTitle: "SERIAL LOGGER METRICS",
+      "Berawal dari proyek akhir MTs berbasis Arduino Uno + RFID RC522 ke Excel, kini sedang dibangun ulang (V2) menggunakan ESP32 BLE dan modul PN532 NFC/RFID agar presensi guru & siswa saat kegiatan luar sekolah (field trip/dinas) berjalan otomatis tanpa rekap manual.",
+    livePreviewTitle: "V1 LEGACY VS V2 PORTABLE SPECS",
     liveMetrics: [
-      { label: "RF Frequency", value: "13.56 MHz (MFRC522 SPI)" },
-      { label: "Tap-to-Log Speed", value: "< 1.8 Detik / Kartu", statusColor: "text-rose-400" },
-      { label: "Data Pipeline", value: "Direct Serial CSV to Excel" },
+      { label: "V2 Wireless Core", value: "ESP32 BLE + PN532 NFC", statusColor: "text-rose-400" },
+      { label: "V1 Legacy System", value: "Arduino Uno + RC522 + Excel", statusColor: "text-amber-400" },
+      { label: "Mobility Mode", value: "Portable / Field-Ready", statusColor: "text-teal-400" },
     ],
-    tags: ["Arduino Uno", "C/C++", "RFID RC522", "LCD 20x4 I2C", "PLX-DAQ Excel"],
+    tags: ["ESP32 BLE", "PN532 NFC/RFID", "Arduino Uno (V1)", "RC522", "LCD 20x4 I2C", "PLX-DAQ Excel"],
     overview:
-      "Proyek akhir saat menempuh pendidikan di MTs Negeri Probolinggo untuk memangkas antrean absensi manual. Sekali tap kartu pelajar, sistem langsung memvalidasi UID, menampilkan nama di layar LCD 20x4, dan mengisi baris baru di Excel secara real-time.",
-    specsTitle: "Hardware Configuration",
+      "Proyek ini memiliki dua fase. Fase pertama (V1) adalah sistem presensi meja saat di MTs Negeri Probolinggo menggunakan Arduino Uno, RFID RC522, LCD 20x4 I2C, dan integrasi langsung ke Microsoft Excel via PLX-DAQ. Saat ini, sistem sedang dirombak total menuju V2 (Portable Edition): memadukan ESP32 BLE (Bluetooth Low Energy) dan modul PN532 NFC/RFID agar guru maupun siswa bisa melakukan presensi secara mobile saat bepergian atau kegiatan di luar sekolah tanpa absen manual.",
+    specsTitle: "Evolution: V1 Legacy vs V2 Portable Rebuild",
     specs: [
-      { label: "Microcontroller", detail: "Arduino Uno R3 (ATmega328P 16MHz)" },
-      { label: "RFID Transceiver", detail: "Modul MFRC522 melalui jalur komunikasi SPI (D9–D13)" },
-      { label: "User Feedback", detail: "Layar LCD 20x4 I2C (Pin A4, A5) + Buzzer Indikator" },
-      { label: "Data Bridge", detail: "USB Serial (Baudrate 9600) terhubung ke makro PLX-DAQ Excel" },
+      { label: "V2 Core & Wireless", detail: "ESP32 Dual-Core dengan deteksi jarak dekat BLE (Bluetooth Low Energy)" },
+      { label: "V2 NFC/RFID Engine", detail: "Modul PN532 NFC/RFID (Mendukung tap smartphone NFC & kartu multi-protokol)" },
+      { label: "V1 Legacy Hardware", detail: "Arduino Uno R3 + Modul MFRC522 SPI + LCD 20x4 I2C + Buzzer" },
+      { label: "Data Sync Pipeline", detail: "V1: USB Serial PLX-DAQ Excel // V2: Wireless Cloud Sync & Local Buffer" },
     ],
     dataFlow: [
-      "Tap Kartu RFID (Pembacaan kode unik Hex UID pada frekuensi 13.56 MHz)",
-      "Arduino Uno (Verifikasi UID terhadap array database di memori Flash)",
-      "Visual & Audio Output (Tampilkan Nama/Status di LCD 20x4 + bunyi Buzzer)",
-      "Serial CSV Injection -> Otomatis mengisi kolom Tanggal, Jam, dan Nama di Excel",
+      "Mode Portable (V2): Deteksi beacon ESP32 BLE dari smartphone atau Tap NFC via modul PN532",
+      "Mode Statis (V1 Legacy): Tap kartu RFID 13.56 MHz ke reader RC522 -> Arduino Uno",
+      "Validasi Identitas Guru/Siswa + Feedback Visual (LCD 20x4) & Audio (Buzzer)",
+      "Otomatisasi Rekap: Injeksi baris Excel (V1) & sinkronisasi log kehadiran mobile (V2)",
     ],
-    logicTitle: "Verification Rules & Optimization",
+    logicTitle: "Key Upgrades & Engineering Rules",
     logicPoints: [
-      "Debounce & Cooldown Lock: Mencegah satu kartu tercatat dua kali jika ditempel terlalu lama di reader.",
-      "Distinct Audio Cues: Beep pendek tunggal untuk kartu valid, dan beep panjang ganda untuk kartu tidak dikenal.",
-      "Zero Manual Entry: Rekap kehadiran harian langsung siap cetak tanpa perlu input ulang oleh guru piket.",
+      "On-The-Go Mobility (V2): Dirancang compact dengan daya baterai/powerbank sehingga mudah dibawa guru & siswa saat kunjungan industri, lomba, atau kegiatan luar kelas.",
+      "Dual-Mode Check-In (V2): Bisa mendeteksi kehadiran via pancaran sinyal ESP32 BLE maupun tap cepat menggunakan PN532 NFC.",
+      "Legacy Reliability (V1): Tetap mempertahankan logika anti-double tap cooldown dan optimasi memori PROGMEM dari versi Arduino Uno sebelumnya.",
     ],
     challenge:
-      "Kapasitas SRAM Arduino Uno sangat terbatas (hanya 2 KB), sehingga rawan penuh ketika menyimpan banyak teks nama siswa.",
+      "Versi terdahulu (V1) masih terikat kabel USB ke laptop untuk mengisi Excel dan terbatas pada kartu RFID biasa, sehingga tidak praktis dibawa saat guru dan siswa bepergian.",
     solution:
-      "Memindahkan penyimpanan daftar nama dan UID statis ke Flash Memory menggunakan makro PROGMEM, menghemat pemakaian SRAM secara signifikan.",
+      "Membangun ulang arsitektur ke V2 dengan mikrokontroler ESP32 (memanfaatkan fitur BLE) serta meng-upgrade sensor ke PN532 NFC agar mendukung pembacaan NFC dari HP maupun kartu secara portable.",
     benchmarks: [
-      { metric: "Transaction Time", result: "< 2 Detik dari Tap ke Excel" },
-      { metric: "Read Reliability", result: "99.8% Akurat (Jarak 1–3 cm)" },
-      { metric: "SRAM Footprint", result: "Hemat 45% Memori Kerja" },
+      { metric: "V1 Tap-to-Excel", result: "< 1.8 Detik / Transaksi" },
+      { metric: "V2 NFC & BLE Range", result: "Tap < 5cm // BLE ~5–10m" },
+      { metric: "Portability", result: "100% Standalone & Mobile" },
     ],
     links: [
-      { label: "Arduino Sketch (.ino)", url: "https://github.com/BiruDesign" },
+      { label: "GitHub Repository", url: "https://github.com/BiruDesign" },
     ],
   },
 ];
@@ -292,7 +291,7 @@ export default function PortfolioPage() {
   const handleCopyEmail = (e: React.MouseEvent) => {
     e.preventDefault();
     if (typeof navigator !== "undefined" && navigator.clipboard) {
-      navigator.clipboard.writeText("krisna.dev@example.com");
+      navigator.clipboard.writeText("krisnaandikanugraha@gmail.com");
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
@@ -479,7 +478,7 @@ export default function PortfolioPage() {
                   style={{ color: textMuted }}
                   className="text-base sm:text-xl font-medium pt-1 leading-relaxed"
                 >
-                  Halo, gue <strong style={{ color: textMain }}>Krisna</strong> —{" "}
+                  Halo, gue <strong style={{ color: textMain }}>Krisna Andika Nugraha</strong> —{" "}
                   <em>hands-on builder</em> dari SMKN 1 Probolinggo yang fokus merancang aplikasi web modern dan mengintegrasikannya langsung dengan sistem mikrokontroler.
                 </h2>
               </div>
@@ -492,7 +491,7 @@ export default function PortfolioPage() {
               >
                 Tumbuh di ekosistem{" "}
                 <span className="text-indigo-400 font-semibold">Kelas X RPL 1 Axioo (oOXIa)</span> bareng tim{" "}
-                <span className="text-amber-400 font-semibold">Caprice 26</span>, gue suka nge-<em>bridge</em> antara dunia frontend modern (<span className="text-rose-400 font-medium">Next.js, TypeScript, Tailwind CSS</span>) dengan perangkat keras IoT (<span className="text-teal-400 font-medium">ESP32 & Arduino</span>). <em>No fluff, just solid engineering.</em>
+                <span className="text-amber-400 font-semibold">Caprice 26</span>, gue suka nge-<em>bridge</em> antara dunia frontend modern (<span className="text-rose-400 font-medium">Next.js, TypeScript, Tailwind CSS</span>) dengan perangkat keras IoT (<span className="text-teal-400 font-medium">ESP32 BLE, PN532 NFC, & Arduino</span>). <em>No fluff, just solid engineering.</em>
               </p>
             </DinamikReveal>
 
@@ -518,13 +517,13 @@ export default function PortfolioPage() {
                   }}
                   className="px-5 py-3.5 rounded-2xl font-mono-code font-semibold text-xs border cursor-pointer hover:border-indigo-400 active:scale-95 transition-all"
                 >
-                  {copied ? "✓ EMAIL COPIED!" : "COPY EMAIL ADDRESS"}
+                  {copied ? "✓ EMAIL COPIED!" : "COPY: krisnaandikanugraha@gmail.com"}
                 </button>
               </div>
             </DinamikReveal>
           </div>
 
-          {/* KARTU PROFIL BUILDER PASS (AXIOO // oOXIa & CAPRICE 26) */}
+          {/* KARTU PROFIL BUILDER PASS */}
           <div className="lg:col-span-5 flex justify-center">
             <DinamikReveal delay={100} className="w-full max-w-sm">
               <div className="relative">
@@ -542,7 +541,6 @@ export default function PortfolioPage() {
                   }}
                   className="relative rounded-[1.75rem] p-3 border shadow-2xl space-y-3"
                 >
-                  {/* Top Bar Kartu */}
                   <div className="flex items-center justify-between px-2 pt-1">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-teal-400" />
@@ -558,12 +556,11 @@ export default function PortfolioPage() {
                     </span>
                   </div>
 
-                  {/* Frame Foto Bersih */}
                   <div className="relative aspect-[4/4.3] w-full rounded-2xl overflow-hidden bg-zinc-900">
                     {!imgError ? (
                       <img
                         src="/profile.jpg"
-                        alt="Krisna Profile"
+                        alt="Krisna Andika Nugraha Profile"
                         onError={() => setImgError(true)}
                         className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
                       />
@@ -577,12 +574,11 @@ export default function PortfolioPage() {
                         >
                           K
                         </div>
-                        <p className="text-sm font-semibold text-zinc-200">Krisna</p>
+                        <p className="text-sm font-semibold text-zinc-200">Krisna Andika Nugraha</p>
                       </div>
                     )}
                   </div>
 
-                  {/* Baris Identitas di Bawah Foto */}
                   <div
                     style={{
                       backgroundColor: boxInner,
@@ -603,7 +599,6 @@ export default function PortfolioPage() {
                     </span>
                   </div>
 
-                  {/* Dua Badge Prestasi */}
                   <div className="grid grid-cols-2 gap-2.5">
                     <div
                       style={{
@@ -657,13 +652,13 @@ export default function PortfolioPage() {
                   <span style={{ color: textMuted }}>//</span>
                   <span className="text-teal-400">✦ CAPRICE TEAM 26</span>
                   <span style={{ color: textMuted }}>//</span>
-                  <span className="text-rose-400">✦ NEXT.JS APP ROUTER</span>
+                  <span className="text-rose-400">✦ PN532 NFC &amp; RFID</span>
                   <span style={{ color: textMuted }}>//</span>
-                  <span className="text-amber-400">✦ ESP32 SMART TELEMETRY</span>
+                  <span className="text-amber-400">✦ ESP32 BLE BEACON</span>
                   <span style={{ color: textMuted }}>//</span>
-                  <span className="text-indigo-400">✦ SMKN 1 PROBOLINGGO</span>
+                  <span className="text-indigo-400">✦ NEXT.JS APP ROUTER</span>
                   <span style={{ color: textMuted }}>//</span>
-                  <span className="text-teal-400">✦ FULL-STACK & IOT BUILDER</span>
+                  <span className="text-teal-400">✦ SIPANAS-IOT R&amp;D</span>
                   <span style={{ color: textMuted }}>//</span>
                 </div>
               ))}
@@ -671,13 +666,13 @@ export default function PortfolioPage() {
           </div>
         </DinamikReveal>
 
-        {/* BENTO METRICS & SOCIAL CHANNELS */}
+        {/* BENTO METRICS & SOCIAL CHANNELS (DENGAN LINK ASLI) */}
         <section className="space-y-5">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
               {
                 num: "10+",
-                title: "Shipped Builds",
+                title: "Builds & Prototypes",
                 desc: "Eksperimen web app & mikrokontroler",
                 color: "text-indigo-400",
                 border: "rgba(99, 102, 241, 0.3)",
@@ -723,12 +718,36 @@ export default function PortfolioPage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {[
-              { name: "GitHub", sub: "@BiruDesign", href: "https://github.com/BiruDesign", badge: "GH", col: "text-indigo-400" },
-              { name: "LinkedIn", sub: "Professional Network", href: "https://linkedin.com", badge: "IN", col: "text-teal-400" },
-              { name: "Instagram", sub: "Daily Snapshot", href: "https://instagram.com", badge: "IG", col: "text-rose-400" },
-              { name: "Direct Mail", sub: "Fast Response", href: "#kontak", badge: "EM", col: "text-amber-400" },
+              {
+                name: "GitHub",
+                sub: "@BiruDesign",
+                href: "https://github.com/BiruDesign",
+                badge: "GH",
+                col: "text-indigo-400",
+              },
+              {
+                name: "LinkedIn",
+                sub: "Krisna Andika Nugraha",
+                href: "https://www.linkedin.com/in/krisna-andika-nugraha-033444434/",
+                badge: "IN",
+                col: "text-teal-400",
+              },
+              {
+                name: "Instagram",
+                sub: "@biru_dsign",
+                href: "https://www.instagram.com/biru_dsign?psln=dGJsb3BvZTlpamN2",
+                badge: "IG",
+                col: "text-rose-400",
+              },
+              {
+                name: "Direct Email",
+                sub: "krisnaandikanugraha@gmail.com",
+                href: "mailto:krisnaandikanugraha@gmail.com",
+                badge: "EM",
+                col: "text-amber-400",
+              },
             ].map((soc, i) => (
               <DinamikReveal key={i} delay={i * 50}>
                 <a
@@ -743,13 +762,13 @@ export default function PortfolioPage() {
                 >
                   <div
                     style={{ backgroundColor: boxInner }}
-                    className={`w-9 h-9 rounded-xl flex items-center justify-center font-mono-code text-xs font-bold ${soc.col}`}
+                    className={`w-9 h-9 rounded-xl flex items-center justify-center font-mono-code text-xs font-bold shrink-0 ${soc.col}`}
                   >
                     {soc.badge}
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="font-display text-xs font-bold">{soc.name}</p>
-                    <p style={{ color: textMuted }} className="text-[11px]">
+                    <p style={{ color: textMuted }} className="text-[11px] truncate">
                       {soc.sub}
                     </p>
                   </div>
@@ -792,8 +811,7 @@ export default function PortfolioPage() {
               </p>
               <p style={{ color: textMuted }}>
                 Sekarang di jurusan PPLG (<span className="text-indigo-400 font-medium">Kelas X RPL 1 Axioo / oOXIa</span>) bersama tim <span className="text-amber-400 font-medium">Caprice 26</span>, fokus utama gue adalah mengeksekusi produk digital secara <em>end-to-end</em>: merancang UI yang <em>clean</em> dan responsif dengan{" "}
-                <span className="text-rose-400 font-medium">Next.js, TypeScript, serta Tailwind CSS</span>, lalu menyambungkannya langsung ke sensor dan aktuator dunia nyata lewat{" "}
-                <span className="text-teal-400 font-medium">ESP32 maupun Arduino</span>.
+                <span className="text-rose-400 font-medium">Next.js, TypeScript, serta Tailwind CSS</span>, sekaligus mengembangkan proyek otomasi <span className="text-teal-400 font-medium">SIPANAS-IoT</span> dan merombak sistem presensi portable berbasis <span className="text-indigo-400 font-medium">ESP32 BLE &amp; PN532 NFC</span>.
               </p>
             </div>
           </DinamikReveal>
@@ -810,8 +828,8 @@ export default function PortfolioPage() {
               },
               {
                 no: "02",
-                title: "IoT & Smart Hardware",
-                desc: "Merakit dan memprogram sistem mikrokontroler (ESP32, Arduino) lengkap dengan sensor presisi dan kendali relay otomatis.",
+                title: "IoT, BLE & NFC Hardware",
+                desc: "Merakit dan memprogram sistem ESP32 (Wi-Fi & BLE), Arduino, modul PN532 NFC/RFID, serta sensor lingkungan dengan aktuator otomatis.",
                 accent: "text-teal-400",
                 border: "rgba(20, 184, 166, 0.3)",
                 bg: "rgba(20, 184, 166, 0.1)",
@@ -819,7 +837,7 @@ export default function PortfolioPage() {
               {
                 no: "03",
                 title: "Real-Time Data Pipeline",
-                desc: "Integrasi aliran data dari hardware ke layar dashboard via REST API, MySQL (Laragon), maupun jembatan serial PLX-DAQ.",
+                desc: "Integrasi aliran data dari hardware portable maupun statis ke dashboard via REST API, MySQL (Laragon), serta PLX-DAQ Excel.",
                 accent: "text-rose-400",
                 border: "rgba(244, 63, 94, 0.3)",
                 bg: "rgba(244, 63, 94, 0.1)",
@@ -855,7 +873,7 @@ export default function PortfolioPage() {
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div className="space-y-2">
                 <p className="text-xs font-mono-code uppercase tracking-[0.2em] text-teal-400 font-semibold">
-                  02 // SELECTED WORKS & CASE STUDIES
+                  02 // SELECTED WORKS & ONGOING R&D
                 </p>
                 <h2 className="font-display text-2xl sm:text-4xl font-extrabold">
                   Featured Builds &{" "}
@@ -899,7 +917,7 @@ export default function PortfolioPage() {
                             backgroundColor: boxInner,
                             color: textMuted,
                           }}
-                          className="px-2.5 py-1 text-[11px] font-mono-code rounded-full"
+                          className="px-2.5 py-1 text-[11px] font-mono-code rounded-full border border-white/5"
                         >
                           {project.status}
                         </span>
@@ -976,12 +994,12 @@ export default function PortfolioPage() {
                                 backgroundColor: bgCard,
                                 borderColor: borderCol,
                               }}
-                              className="px-3.5 py-2.5 rounded-xl border flex items-center justify-between"
+                              className="px-3.5 py-2.5 rounded-xl border flex items-center justify-between gap-2"
                             >
                               <span style={{ color: textMuted }} className="text-xs">
                                 {m.label}
                               </span>
-                              <span className={`text-xs font-mono-code font-bold ${m.statusColor || ""}`}>
+                              <span className={`text-xs font-mono-code font-bold text-right ${m.statusColor || ""}`}>
                                 {m.value}
                               </span>
                             </div>
@@ -1027,16 +1045,16 @@ export default function PortfolioPage() {
                 items: ["Node.js", "RESTful API", "MySQL Database", "Laragon Stack", "Flutter (Mobile)", "PLX-DAQ Serial"],
               },
               {
-                title: "Hardware & Sensors",
+                title: "Hardware, BLE & NFC",
                 col: "text-rose-400",
                 border: "rgba(244, 63, 94, 0.3)",
-                items: ["ESP32 Dual-Core", "Arduino Uno", "mBot2 Robotics", "RFID RC522 & PN532", "DHT22 & MQ-135", "HC-SR04, Load Cell, Servo"],
+                items: ["ESP32 (Wi-Fi & BLE)", "PN532 NFC / RFID", "RFID RC522", "Arduino Uno", "DHT22 & Capacitive Soil", "LCD 20x4 I2C & Relay"],
               },
               {
                 title: "Workflow & Environment",
                 col: "text-amber-400",
                 border: "rgba(245, 158, 11, 0.3)",
-                items: ["VS Code + PlatformIO", "Arduino IDE & Thonny", "Wokwi Simulator", "Git & GitHub CI/CD", "Linux Mint XFCE", "Windows 11 Pro"],
+                items: ["VS Code + PlatformIO", "Arduino IDE & Thonny", "Wokwi & EasyEDA", "Git & GitHub CI/CD", "Linux Mint XFCE", "Windows 11 Pro"],
               },
             ].map((group, idx) => (
               <DinamikReveal key={idx} delay={idx * 60}>
@@ -1095,16 +1113,16 @@ export default function PortfolioPage() {
                 year: "2026 — Present",
                 title: "Software Engineering Student — X RPL 1 Axioo (oOXIa)",
                 org: "SMKN 1 Kota Probolinggo • Caprice Team 26",
-                desc: "Fokus mendalami full-stack web development dengan Next.js di kelas industri Axioo sekaligus menginisiasi portal WebCaprice 26 dan otomasi SIPANAS-IoT bareng tim Caprice 26.",
+                desc: "Mendalami full-stack web development dengan Next.js di kelas industri Axioo, menginisiasi portal WebCaprice 26, mengembangkan SIPANAS-IoT, serta membangun ulang sistem presensi portable berbasis ESP32 BLE & PN532 NFC.",
                 highlight: "Axioo Class // Caprice 26",
                 dot: "border-indigo-400",
                 badge: "text-indigo-300 bg-indigo-500/15 border-indigo-400/30",
               },
               {
                 year: "2026",
-                title: "Junior High Graduation & RFID Final Project",
+                title: "Junior High Graduation & RFID V1 Final Project",
                 org: "MTs Negeri Kota Probolinggo",
-                desc: "Lulus pendidikan menengah dengan karya akhir sistem presensi siswa berbasis kartu RFID RC522 yang terintegrasi otomatis ke database Excel.",
+                desc: "Lulus pendidikan menengah dengan karya akhir sistem presensi siswa berbasis Arduino Uno & RFID RC522 yang terintegrasi otomatis ke database Excel (PLX-DAQ).",
                 highlight: "Alumni",
                 dot: "border-teal-400",
                 badge: "text-teal-300 bg-teal-500/15 border-teal-400/30",
@@ -1186,7 +1204,11 @@ export default function PortfolioPage() {
                   </span>
                 </h2>
                 <p style={{ color: textMuted }} className="text-sm leading-relaxed">
-                  Selalu terbuka buat diskusi seputar <em>software development</em>, kolaborasi tim kompetisi, atau ngulik bareng proyek mikrokontroler. <em>Hit me up anytime!</em>
+                  Selalu terbuka buat diskusi seputar <em>software development</em>, kolaborasi tim, atau ngulik bareng perangkat ESP32 BLE &amp; NFC. Hubungi langsung via email{" "}
+                  <span className="text-indigo-400 font-mono-code font-semibold">
+                    krisnaandikanugraha@gmail.com
+                  </span>{" "}
+                  atau kanal sosial di bawah!
                 </p>
               </div>
 
@@ -1199,10 +1221,10 @@ export default function PortfolioPage() {
                   }}
                   className="px-6 py-3.5 rounded-2xl font-display font-bold text-xs uppercase tracking-wider text-white hover:scale-105 active:scale-95 transition-transform cursor-pointer shadow-lg"
                 >
-                  {copied ? "✓ Email Copied!" : "Drop an Email"}
+                  {copied ? "✓ Email Copied!" : "Copy Email"}
                 </button>
                 <a
-                  href="https://github.com/BiruDesign"
+                  href="https://www.linkedin.com/in/krisna-andika-nugraha-033444434/"
                   target="_blank"
                   rel="noreferrer"
                   style={{
@@ -1212,7 +1234,20 @@ export default function PortfolioPage() {
                   }}
                   className="px-5 py-3.5 rounded-2xl font-mono-code font-semibold text-xs border hover:border-teal-400 active:scale-95 transition-all"
                 >
-                  GitHub @BiruDesign ↗
+                  LinkedIn ↗
+                </a>
+                <a
+                  href="https://www.instagram.com/biru_dsign?psln=dGJsb3BvZTlpamN2"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    backgroundColor: boxInner,
+                    color: textMain,
+                    borderColor: borderCol,
+                  }}
+                  className="px-5 py-3.5 rounded-2xl font-mono-code font-semibold text-xs border hover:border-rose-400 active:scale-95 transition-all"
+                >
+                  IG @biru_dsign ↗
                 </a>
               </div>
             </div>
@@ -1221,8 +1256,8 @@ export default function PortfolioPage() {
               style={{ color: textMuted }}
               className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono-code"
             >
-              <p>© 2026 KRISNA • X RPL 1 AXIOO (oOXIa) • CAPRICE 26 — PROBOLINGGO.</p>
-              <p>NEXT.JS • TYPESCRIPT • TAILWIND CSS</p>
+              <p>© 2026 KRISNA ANDIKA NUGRAHA • X RPL 1 AXIOO (oOXIa) • CAPRICE 26.</p>
+              <p>NEXT.JS • TYPESCRIPT • ESP32 BLE &amp; PN532 NFC</p>
             </div>
           </footer>
         </DinamikReveal>
