@@ -39,20 +39,20 @@ const PROJECTS_DATA: ProjectCaseStudy[] = [
     accentSoftBg: "rgba(99, 102, 241, 0.12)",
     accentBorder: "rgba(99, 102, 241, 0.35)",
     accentBadge: "#4f46e5",
-    title: "WebCaprice 26 — Class Portal & IoT Hub",
+    title: "WebCaprice 26 — Axioo Class Portal & IoT Hub",
     subtitle:
-      "Transformasi workflow kelas X RPL 1 lewat satu central hub yang terhubung langsung ke sensor fisik.",
+      "Inisiatif tim Caprice 26 buat nge-upgrade workflow kelas X RPL 1 (Axioo) lewat satu central hub yang terhubung ke sensor fisik.",
     shortDesc:
-      "Platform web terpadu untuk direktori siswa, adaptive schedule yang tahu jam pelajaran aktif secara otomatis, plus live monitoring suhu & kualitas udara ruang kelas dari mikrokontroler ESP32.",
+      "Platform web terpadu karya tim Caprice 26 untuk direktori siswa kelas Axioo (oOXIa), adaptive schedule otomatis, plus live monitoring suhu & kualitas udara ruang kelas dari mikrokontroler ESP32.",
     livePreviewTitle: "LIVE CLASSROOM TELEMETRY",
     liveMetrics: [
-      { label: "Active Cohort", value: "X RPL 1 (Caprice 26)" },
+      { label: "Class & Team", value: "X RPL 1 Axioo // Caprice 26" },
       { label: "Room Condition", value: "27.4°C | Good Air (DHT22)", statusColor: "text-teal-400" },
       { label: "Sync Latency", value: "< 2s Real-Time Interval", statusColor: "text-indigo-400" },
     ],
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "ESP32 Telemetry"],
     overview:
-      "Dibangun khusus sebagai central operating system untuk Kelas X RPL 1 (Caprice Team 26) di SMKN 1 Probolinggo. Proyek ini menggabungkan manajemen akademik harian dengan telemetri IoT dalam satu antarmuka yang clean dan responsif.",
+      "Dikembangkan oleh tim Caprice 26 khusus sebagai central operating system untuk Kelas X RPL 1 Axioo (oOXIa) di SMKN 1 Probolinggo. Proyek ini menggabungkan manajemen akademik harian dengan telemetri IoT dalam satu antarmuka yang clean dan responsif.",
     specsTitle: "System Architecture & Specs",
     specs: [
       { label: "Frontend Stack", detail: "Next.js App Router, React 19, Tailwind CSS" },
@@ -61,14 +61,14 @@ const PROJECTS_DATA: ProjectCaseStudy[] = [
       { label: "Transport Layer", detail: "HTTP REST JSON Payload dengan interval push setiap 5 detik" },
     ],
     dataFlow: [
-      "Sensing Node di Kelas (ESP32 membaca suhu DHT22 & udara MQ-135)",
+      "Sensing Node di Kelas Axioo (ESP32 membaca suhu DHT22 & udara MQ-135)",
       "Transmisi Wi-Fi (HTTP POST / JSON Payload setiap 5 detik)",
       "API Layer (Validasi payload & penyimpanan state terbaru)",
       "Next.js Client UI (Visualisasi real-time & highlight jadwal otomatis)",
     ],
     logicTitle: "Key Features & Engineering",
     logicPoints: [
-      "Dynamic Roster Engine: Pencarian instan profil siswa dan pembagian divisi pengurus kelas.",
+      "Dynamic Roster Engine: Pencarian instan profil siswa kelas X RPL 1 Axioo dan struktur pengurus.",
       "Time-Aware Schedule: Algoritma yang otomatis menyorot mata pelajaran sesuai jam real-time.",
       "Thermal Alert Indicator: Status bar berubah warna secara dinamis jika suhu ruangan melewati 30°C.",
     ],
@@ -77,7 +77,7 @@ const PROJECTS_DATA: ProjectCaseStudy[] = [
     solution:
       "Implementasi logika auto-reconnect dan exponential backoff di level firmware C++, dipadukan dengan fallback state caching di sisi server.",
     benchmarks: [
-      { metric: "Directory Load", result: "30+ Siswa & Full Matrix Jadwal" },
+      { metric: "Directory Load", result: "30+ Siswa Axioo & Full Jadwal" },
       { metric: "End-to-End Latency", result: "< 1.5 Detik Update UI" },
       { metric: "System Uptime", result: "99.2% Selama Jam Aktif" },
     ],
@@ -199,7 +199,6 @@ const PROJECTS_DATA: ProjectCaseStudy[] = [
   },
 ];
 
-// Komponen Scroll Reveal 60fps (Hanya berjalan sekali saat elemen masuk viewport agar enteng)
 function DinamikReveal({
   children,
   delay = 0,
@@ -250,7 +249,6 @@ export default function PortfolioPage() {
   const [imgError, setImgError] = useState(false);
   const [activeNav, setActiveNav] = useState<string>("tentang");
 
-  // Ref untuk progress bar tanpa memicu re-render React saat scroll
   const progressBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -300,7 +298,6 @@ export default function PortfolioPage() {
     }
   };
 
-  // Palet Warna Deep Obsidian & Warm Editorial Cream
   const bgMain = isDark ? "#090B10" : "#F4F1EA";
   const textMain = isDark ? "#F1F5F9" : "#18181B";
   const bgCard = isDark ? "#12151F" : "#FFFFFF";
@@ -325,7 +322,7 @@ export default function PortfolioPage() {
       }}
       className="bg-dinamik-grid overflow-x-hidden selection:bg-indigo-500 selection:text-white transition-colors duration-300"
     >
-      {/* TOP SCROLL PROGRESS BAR (Direct DOM Ref = 0 Re-renders = Anti Lag) */}
+      {/* TOP SCROLL PROGRESS BAR */}
       <div className="fixed top-0 left-0 right-0 h-1 z-50 bg-transparent pointer-events-none">
         <div
           ref={progressBarRef}
@@ -337,7 +334,7 @@ export default function PortfolioPage() {
         />
       </div>
 
-      {/* STATIC AMBIENT GLOW (Ringan di GPU) */}
+      {/* STATIC AMBIENT GLOW */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div
           style={{
@@ -366,7 +363,6 @@ export default function PortfolioPage() {
           }}
           className="max-w-4xl mx-auto p-1.5 sm:px-3 sm:py-2 rounded-full backdrop-blur-md border flex items-center justify-between gap-2 shadow-xl shadow-black/20"
         >
-          {/* Brand Pill */}
           <a
             href="#"
             className="flex items-center gap-2.5 pl-2 pr-3 py-1 rounded-full hover:bg-white/5 transition-colors"
@@ -390,7 +386,6 @@ export default function PortfolioPage() {
             </div>
           </a>
 
-          {/* Center Navigation Pills ala Dinamik 21 (Tampil di Desktop & Tablet) */}
           <nav
             style={{
               backgroundColor: boxInner,
@@ -421,7 +416,6 @@ export default function PortfolioPage() {
             })}
           </nav>
 
-          {/* Right Action Capsule */}
           <div className="flex items-center gap-1.5 pr-1">
             <button
               type="button"
@@ -464,7 +458,7 @@ export default function PortfolioPage() {
               >
                 <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
                 <span style={{ color: textMuted }}>
-                  OPEN FOR COLLAB • PPLG SMKN 1 PROBOLINGGO
+                  X RPL 1 • AXIOO CLASS (oOXIa) // CAPRICE 26
                 </span>
               </div>
             </DinamikReveal>
@@ -486,7 +480,7 @@ export default function PortfolioPage() {
                   className="text-base sm:text-xl font-medium pt-1 leading-relaxed"
                 >
                   Halo, gue <strong style={{ color: textMain }}>Krisna</strong> —{" "}
-                  <em>hands-on builder</em> yang fokus merancang aplikasi web modern dan mengintegrasikannya langsung dengan sistem mikrokontroler.
+                  <em>hands-on builder</em> dari SMKN 1 Probolinggo yang fokus merancang aplikasi web modern dan mengintegrasikannya langsung dengan sistem mikrokontroler.
                 </h2>
               </div>
             </DinamikReveal>
@@ -496,8 +490,9 @@ export default function PortfolioPage() {
                 style={{ color: textMuted }}
                 className="text-sm sm:text-base leading-relaxed max-w-2xl"
               >
-                Berangkat dari <em>mindset problem-solving</em> di{" "}
-                <span className="text-indigo-400 font-semibold">Kelas X RPL 1 (Caprice 26)</span>, gue suka nge-<em>bridge</em> antara ekosistem frontend modern (<span className="text-rose-400 font-medium">Next.js, TypeScript, Tailwind CSS</span>) dengan perangkat keras IoT (<span className="text-teal-400 font-medium">ESP32 & Arduino</span>). <em>No fluff, just solid engineering.</em>
+                Tumbuh di ekosistem{" "}
+                <span className="text-indigo-400 font-semibold">Kelas X RPL 1 Axioo (oOXIa)</span> bareng tim{" "}
+                <span className="text-amber-400 font-semibold">Caprice 26</span>, gue suka nge-<em>bridge</em> antara dunia frontend modern (<span className="text-rose-400 font-medium">Next.js, TypeScript, Tailwind CSS</span>) dengan perangkat keras IoT (<span className="text-teal-400 font-medium">ESP32 & Arduino</span>). <em>No fluff, just solid engineering.</em>
               </p>
             </DinamikReveal>
 
@@ -529,11 +524,10 @@ export default function PortfolioPage() {
             </DinamikReveal>
           </div>
 
-          {/* KARTU PROFIL BARU: BEBAS TERTUTUP / OVERLAP */}
+          {/* KARTU PROFIL BUILDER PASS (AXIOO // oOXIa & CAPRICE 26) */}
           <div className="lg:col-span-5 flex justify-center">
             <DinamikReveal delay={100} className="w-full max-w-sm">
               <div className="relative">
-                {/* Glow Halus di Belakang Kartu */}
                 <div
                   style={{
                     background: "linear-gradient(135deg, #4f46e5, #e11d48, #0d9488)",
@@ -541,7 +535,6 @@ export default function PortfolioPage() {
                   className="absolute -inset-1.5 rounded-[2rem] blur-xl opacity-30 pointer-events-none"
                 />
 
-                {/* Bingkai Utama Kartu Profil */}
                 <div
                   style={{
                     backgroundColor: bgCard,
@@ -549,23 +542,23 @@ export default function PortfolioPage() {
                   }}
                   className="relative rounded-[1.75rem] p-3 border shadow-2xl space-y-3"
                 >
-                  {/* Top Bar Kartu ala ID Pass Festival Dinamik */}
+                  {/* Top Bar Kartu */}
                   <div className="flex items-center justify-between px-2 pt-1">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-teal-400" />
                       <span className="text-[10px] font-mono-code uppercase tracking-wider text-teal-400 font-bold">
-                        BUILDER PASS // 2026
+                        BUILDER PASS // X RPL 1
                       </span>
                     </div>
                     <span
                       style={{ backgroundColor: boxInner, color: textMuted }}
-                      className="px-2 py-0.5 rounded-md text-[10px] font-mono-code font-semibold"
+                      className="px-2.5 py-0.5 rounded-md text-[10px] font-mono-code font-bold border border-indigo-500/20"
                     >
-                      ID: X-RPL-1
+                      AXIOO • <span className="text-indigo-400">oOXIa</span>
                     </span>
                   </div>
 
-                  {/* Frame Foto Bersih (Tanpa Badge yang Menutupi Teks) */}
+                  {/* Frame Foto Bersih */}
                   <div className="relative aspect-[4/4.3] w-full rounded-2xl overflow-hidden bg-zinc-900">
                     {!imgError ? (
                       <img
@@ -589,7 +582,7 @@ export default function PortfolioPage() {
                     )}
                   </div>
 
-                  {/* Baris Identitas di Bawah Foto (100% Jelas & Tidak Tertutup) */}
+                  {/* Baris Identitas di Bawah Foto */}
                   <div
                     style={{
                       backgroundColor: boxInner,
@@ -599,18 +592,18 @@ export default function PortfolioPage() {
                   >
                     <div>
                       <p className="text-[11px] font-mono-code font-bold text-indigo-400">
-                        KRISNA // CAPRICE 26
+                        KRISNA // CAPRICE TEAM 26
                       </p>
                       <p className="font-display text-base font-extrabold">
                         Web &amp; IoT Engineer
                       </p>
                     </div>
-                    <span className="px-2.5 py-1 rounded-lg text-[11px] font-mono-code font-bold bg-indigo-500/15 border border-indigo-400/30 text-indigo-300">
-                      PROBOLINGGO
+                    <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono-code font-bold bg-indigo-500/15 border border-indigo-400/30 text-indigo-300">
+                      AXIOO CLASS
                     </span>
                   </div>
 
-                  {/* Dua Badge Prestasi Tersusun Rapi di Bawah (Tidak Menabrak Foto) */}
+                  {/* Dua Badge Prestasi */}
                   <div className="grid grid-cols-2 gap-2.5">
                     <div
                       style={{
@@ -648,7 +641,7 @@ export default function PortfolioPage() {
           </div>
         </section>
 
-        {/* SMOOTH INFINITE MARQUEE (Murni CSS GPU = Anti Patah-Patah) */}
+        {/* SMOOTH INFINITE MARQUEE */}
         <DinamikReveal>
           <div
             style={{
@@ -660,17 +653,17 @@ export default function PortfolioPage() {
             <div className="animate-marquee-smooth font-mono-code text-xs font-semibold tracking-widest uppercase">
               {[...Array(2)].map((_, idx) => (
                 <div key={idx} className="flex items-center gap-8 px-4">
-                  <span className="text-indigo-400">✦ NEXT.JS APP ROUTER</span>
-                  <span style={{ color: textMuted }}>//</span>
-                  <span className="text-teal-400">✦ ESP32 TELEMETRY</span>
-                  <span style={{ color: textMuted }}>//</span>
-                  <span className="text-rose-400">✦ SMART IRRIGATION IOT</span>
-                  <span style={{ color: textMuted }}>//</span>
-                  <span className="text-amber-400">✦ RFID HARDWARE LOGGER</span>
-                  <span style={{ color: textMuted }}>//</span>
-                  <span className="text-indigo-400">✦ FULL-STACK EXECUTION</span>
+                  <span className="text-indigo-400">✦ X RPL 1 AXIOO CLASS (oOXIa)</span>
                   <span style={{ color: textMuted }}>//</span>
                   <span className="text-teal-400">✦ CAPRICE TEAM 26</span>
+                  <span style={{ color: textMuted }}>//</span>
+                  <span className="text-rose-400">✦ NEXT.JS APP ROUTER</span>
+                  <span style={{ color: textMuted }}>//</span>
+                  <span className="text-amber-400">✦ ESP32 SMART TELEMETRY</span>
+                  <span style={{ color: textMuted }}>//</span>
+                  <span className="text-indigo-400">✦ SMKN 1 PROBOLINGGO</span>
+                  <span style={{ color: textMuted }}>//</span>
+                  <span className="text-teal-400">✦ FULL-STACK & IOT BUILDER</span>
                   <span style={{ color: textMuted }}>//</span>
                 </div>
               ))}
@@ -798,7 +791,7 @@ export default function PortfolioPage() {
                 dengan predikat <em>Cum Laude</em> (GPA 4.00), sekaligus menembus <em>Top 20 Finalist</em> di ajang Walikota Cup Robotics.
               </p>
               <p style={{ color: textMuted }}>
-                Sekarang di jurusan PPLG, fokus utama gue adalah mengeksekusi produk digital secara <em>end-to-end</em>: merancang UI yang <em>clean</em> dan responsif dengan{" "}
+                Sekarang di jurusan PPLG (<span className="text-indigo-400 font-medium">Kelas X RPL 1 Axioo / oOXIa</span>) bersama tim <span className="text-amber-400 font-medium">Caprice 26</span>, fokus utama gue adalah mengeksekusi produk digital secara <em>end-to-end</em>: merancang UI yang <em>clean</em> dan responsif dengan{" "}
                 <span className="text-rose-400 font-medium">Next.js, TypeScript, serta Tailwind CSS</span>, lalu menyambungkannya langsung ke sensor dan aktuator dunia nyata lewat{" "}
                 <span className="text-teal-400 font-medium">ESP32 maupun Arduino</span>.
               </p>
@@ -954,7 +947,6 @@ export default function PortfolioPage() {
                       </div>
                     </div>
 
-                    {/* Panel Live Telemetry */}
                     <div className="lg:col-span-5">
                       <div
                         style={{
@@ -1101,10 +1093,10 @@ export default function PortfolioPage() {
             {[
               {
                 year: "2026 — Present",
-                title: "Software Engineering Student (Kelas X RPL 1 — Caprice 26)",
-                org: "SMKN 1 Kota Probolinggo",
-                desc: "Fokus mendalami full-stack web development dengan Next.js sekaligus menginisiasi portal kelas WebCaprice 26 dan otomasi SIPANAS-IoT.",
-                highlight: "Current Cohort",
+                title: "Software Engineering Student — X RPL 1 Axioo (oOXIa)",
+                org: "SMKN 1 Kota Probolinggo • Caprice Team 26",
+                desc: "Fokus mendalami full-stack web development dengan Next.js di kelas industri Axioo sekaligus menginisiasi portal WebCaprice 26 dan otomasi SIPANAS-IoT bareng tim Caprice 26.",
+                highlight: "Axioo Class // Caprice 26",
                 dot: "border-indigo-400",
                 badge: "text-indigo-300 bg-indigo-500/15 border-indigo-400/30",
               },
@@ -1229,7 +1221,7 @@ export default function PortfolioPage() {
               style={{ color: textMuted }}
               className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono-code"
             >
-              <p>© 2026 KRISNA • KANIGARAN, PROBOLINGGO — BUILT WITH PASSION.</p>
+              <p>© 2026 KRISNA • X RPL 1 AXIOO (oOXIa) • CAPRICE 26 — PROBOLINGGO.</p>
               <p>NEXT.JS • TYPESCRIPT • TAILWIND CSS</p>
             </div>
           </footer>
