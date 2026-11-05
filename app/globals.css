@@ -8,6 +8,7 @@ html {
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .font-display {
@@ -22,51 +23,60 @@ body {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Transisi halus saat ganti tema & interaksi */
-* {
-  transition-property: color, background-color, border-color, box-shadow;
-  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  transition-duration: 300ms;
-}
-
-/* Efek Reveal ala Dinamik (3D Unblur + Scale + Rise) */
+/* Animasi Scroll Reveal 60FPS Murni GPU (Tanpa Blur Berat) */
 .dinamik-reveal {
   opacity: 0;
-  filter: blur(12px);
-  transform: perspective(1000px) translateY(55px) scale(0.94) rotateX(6deg);
+  transform: translate3d(0, 36px, 0) scale(0.96);
   transition:
-    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, filter, transform;
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .dinamik-reveal.is-visible {
   opacity: 1;
-  filter: blur(0px);
-  transform: perspective(1000px) translateY(0) scale(1) rotateX(0deg);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Marquee Berjalan Mulus dengan GPU CSS (Bebas Lag Scroll) */
+@keyframes marqueeScroll {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-smooth {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-smooth:hover {
+  animation-play-state: paused;
 }
 
 /* Animasi Pop-up Modal */
 @keyframes modalPop {
   from {
     opacity: 0;
-    filter: blur(8px);
-    transform: scale(0.92) translateY(20px);
+    transform: translate3d(0, 16px, 0) scale(0.95);
   }
   to {
     opacity: 1;
-    filter: blur(0px);
-    transform: scale(1) translateY(0);
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
 .animate-modal {
-  animation: modalPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: modalPop 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Tekstur Noise/Grain halus agar warna dark colorful terlihat mahal & tidak flat */
-.bg-noise {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
-  background-size: 24px 24px;
+/* Dot Matrix Grid Halus ala Dinamik 21 */
+.bg-dinamik-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 0);
+  background-size: 28px 28px;
 }
